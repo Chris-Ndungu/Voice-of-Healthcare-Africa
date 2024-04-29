@@ -1,7 +1,7 @@
 <!-- Javascript -->
 <template>
   <nav
-    class="px-6 py-4 bg-white h-full md:flex justify-between items-center border-b border-orange-400 bottom-1 z-50"
+    class="md:fixed top-0 w-full left-0 md:h-max h-full px-6 py-1 bg-white md:flex justify-between items-center border-b border-orange-400 bottom-1 z-50"
   >
     <div class="flex items-center justify-between">
       <!-- Logo -->
@@ -23,7 +23,7 @@
 
     <!-- Menu items -->
     <ul
-      class="z-40 h-4/6 flex flex-col md:flex-row items-center gap-6 md:gap-5 md:items-center px-6 md:px-0 pt-3 md:pt-0 pb-16 md:pb-0 absolute md:static bg-white w-full md:w-auto mt-3 duration-700 ease-in text-2xl border-b md:border-none border-b-orange-500 rounded-b-xl"
+      class="z-40 h-5/6 w-4/6 absolute flex flex-col md:flex-row items-center gap-6 md:gap-5 md:items-center px-6 md:px-0 pt-3 md:pt-0 pb-16 md:pb-0 md:static bg-white md:w-auto duration-700 ease-in text-2xl border-b md:border-none border-b-orange-500 rounded-br-xl"
       :class="[open ? 'left-0' : 'left-[-100%]']"
       id="navigation"
     >
@@ -40,7 +40,7 @@
 
 <!-- Javascript -->
 <script>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref } from 'vue'
 
 export default {
   setup() {
@@ -57,33 +57,7 @@ export default {
       open.value = !open.value
     }
 
-    // Hide the navbar when scrolling down
-    const prevScrollPos = ref(window.scrollY) // Track previous scroll position
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset
-      const isScrolledDown = currentScrollPos > prevScrollPos.value
-      prevScrollPos.value = currentScrollPos
-
-      // Update open state based on scroll direction (optional)
-      if (isScrolledDown) {
-        open.value = false
-      } else {
-        // Optionally show navbar on scroll up only if it's currently hidden
-        if (!open.value) {
-          open.value = true
-        }
-      }
-    }
-
-    onMounted(() => {
-      window.addEventListener('scroll', handleScroll)
-    })
-
-    onBeforeUnmount(() => {
-      window.removeEventListener('scroll', handleScroll)
-    })
-
-    return { Links, open, menuOpen, prevScrollPos }
+    return { Links, open, menuOpen }
   }
 }
 </script>
