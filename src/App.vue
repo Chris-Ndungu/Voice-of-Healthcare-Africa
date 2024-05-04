@@ -1,5 +1,5 @@
 <script setup>
-// import { RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import HeaderSection from './components/HeaderSection.vue'
 </script>
 
@@ -8,7 +8,7 @@ import HeaderSection from './components/HeaderSection.vue'
     <HeaderSection />
   </header>
   <body>
-    <!-- <RouterView /> -->
+    <RouterView />
   </body>
   <footer></footer>
 </template>
